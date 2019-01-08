@@ -5,12 +5,12 @@
   #### 2、定义view层  
     setp1、定义IView。  
     setp2、定义View。继承SKActivity<P extends SKIPre>，通过指定泛型注入Presenter。  
-   (```)
+(```)
     interface IJokeListActivity {  
       void showJokeList(List<JokeData.JokeBean> jokeList);  
     }  
     public class JokeListActivity extends SKActivity<IJokeListPre> implements IJokeListActivity{}  
-   (```)
+(```)
     同样，Fragment也是一样。  
   #### 3、定义Presenter层  
     step1、定义IPresenter。  
