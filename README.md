@@ -5,6 +5,7 @@
   #### 2、定义view层  
     setp1、定义IView。  
     setp2、定义View。继承SKActivity<P extends SKIPre>，通过指定泛型注入Presenter。  
+    
     interface IJokeListActivity {  
         void showJokeList(List<JokeData.JokeBean> jokeList);  
     }  
@@ -14,6 +15,7 @@
     step1、定义IPresenter。  
     step2、定义Presenter。继承SKPre<U>，通过泛型注入IView。  
     step3、给IPresenter添加注解@Impl指定IPresenter的实现类Presenter，从而建立关联。  
+    
     @Impl(JokeListPre.class)  
     public interface IJokeListPre extends SKIPre {  
         @Background(BackgroundType.HTTP)  
