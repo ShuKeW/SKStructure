@@ -4,7 +4,7 @@
   自定义Application继承SKApplication  
   #### 2、定义view层  
    setp1、定义IView。  
-   setp2、定义View。继承SKActivity<P extends SKIPre>通过指定泛型注入Presenter。  
+   setp2、定义View。继承SKActivity<P extends SKIPre>,通过指定泛型注入Presenter。  
     interface IJokeListActivity {  
       void showJokeList(List<JokeData.JokeBean> jokeList);  
     }  
