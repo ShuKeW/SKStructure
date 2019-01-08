@@ -2,7 +2,7 @@
 基于MVP的Android基础架构
 
 一、基本写法  
-  1、定义Application  
+  1、定义Application<br>
     自定义Application继承SKApplication  
   2、定义view层  
     setp1、定义IView。  
