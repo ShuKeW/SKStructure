@@ -1,9 +1,8 @@
 # SKStructure
-一、基本写法
--
-  ## 1、定义Application<br>
-  自定义Application继承SKApplication  
-  ## 2、定义view层  
+## 一、基本写法
+  ### 1、定义Application<br>
+  >自定义Application继承SKApplication  
+  ### 2、定义view层  
    setp1、定义IView。  
    setp2、定义View。继承SKActivity<P extends SKIPre>，通过指定泛型注入Presenter。  
     interface IJokeListActivity {  
@@ -11,7 +10,7 @@
     }  
     public class JokeListActivity extends SKActivity<IJokeListPre> implements IJokeListActivity{}  
     同样，Fragment也是一样。  
-  ## 3、定义Presenter层  
+  ### 3、定义Presenter层  
     step1、定义IPresenter。  
     step2、定义Presenter。继承SKPre<U>，通过泛型注入IView。  
     step3、给IPresenter添加注解@Impl指定IPresenter的实现类Presenter，从而建立关联。  
@@ -38,9 +37,9 @@
   同样，在IPresenter申明方法的时候，添加注解@Repeat，取值为boolean型，默认为false。  
   这样，如果@Repeat(false)这个方法的方法体还没有执行完成是不会再次执行的。  
 ## 四、presenter中的拦截器  
-  #### step1、自定义自己的startInterceptor继承SKPreMethodStartInterceptor和endInterceptor继承SKPreMethodEndInterceptor。  
-  #### step2、在Application中，重写createMethodInterceptor，通过builder模式来创建SKMethodProxy。  
-  #### step3、在IPresenter的方法中，添加@Interceptor注解，传入value。  
+  step1、自定义自己的startInterceptor继承SKPreMethodStartInterceptor和endInterceptor继承SKPreMethodEndInterceptor。  
+  step2、在Application中，重写createMethodInterceptor，通过builder模式来创建SKMethodProxy。  
+  step3、在IPresenter的方法中，添加@Interceptor注解，传入value。  
   那么，在这个方法执行的时候，如果interceptor不为空，value!=-1，就会回调interceptor的interceptor方法  
 ## 五、网络
   在presenter中请求网络数据，调用http方法，直接返回实体。例如在demo中    
