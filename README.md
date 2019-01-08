@@ -34,8 +34,8 @@
     取值为Background下的SINGLEWORK：单线程同步操作  
                     HTTP：网络线程  
                     WORK：工作线程  
-    例如demo中的        @Background(BackgroundType.HTTP)  
-                     void loadJokeList();  
+    例如demo中的     @Background(BackgroundType.HTTP)  
+                    void loadJokeList();  
 ### 三、presenter中的防止连续点击  
     同样，在IPresenter申明方法的时候，添加注解@Repeat，取值为boolean型，默认为false。  
     这样，如果@Repeat(false)这个方法的方法体还没有执行完成是不会再次执行的。  
