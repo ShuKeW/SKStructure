@@ -1,7 +1,6 @@
-# SKStructure
-基于MVP的Android基础架构
 
-一、基本写法  
+一、基本写法 
+====
   1、定义Application<br>
     自定义Application继承SKApplication  
   2、定义view层  
@@ -29,6 +28,7 @@
     在Presenter中，直接调用方法ui()来调用方法。  
     ui().showJokeList(jokeDataResponse.getData());  
 二、presenter的同步和异步操作  
+====
   在IPresenter申明方法的时候，添加注解@Background。  
   取值为Background下的SINGLEWORK：单线程同步操作  
                     HTTP：网络线程  
@@ -36,9 +36,11 @@
   例如demo中的        @Background(BackgroundType.HTTP)  
                      void loadJokeList();  
 三、presenter中的防止连续点击  
+====
   同样，在IPresenter申明方法的时候，添加注解@Repeat，取值为boolean型，默认为false。  
   这样，如果@Repeat(false)这个方法的方法体还没有执行完成是不会再次执行的。  
 四、presenter中的拦截器  
+====
   step1、自定义自己的startInterceptor继承SKPreMethodStartInterceptor和endInterceptor继承SKPreMethodEndInterceptor。  
   step2、在Application中，重写createMethodInterceptor，通过builder模式来创建SKMethodProxy。  
   step3、在IPresenter的方法中，添加@Interceptor注解，传入value。  
