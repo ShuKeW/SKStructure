@@ -8,7 +8,7 @@
     interface IJokeListActivity {  
         void showJokeList(List<JokeData.JokeBean> jokeList);  
     }  
-    `public class JokeListActivity extends SKActivity<IJokeListPre> implements IJokeListActivity{}`  
+    public class JokeListActivity extends SKActivity<IJokeListPre> implements IJokeListActivity{}  
     同样，Fragment也是一样。  
   #### 3、定义Presenter层  
     step1、定义IPresenter。  
