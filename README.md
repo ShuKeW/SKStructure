@@ -48,6 +48,8 @@
     在presenter中请求网络数据，调用http方法，直接返回实体。例如在demo中    
     JokeData jokeDataResponse = http(ApiServices.class).loadJokeList(2, 1);
     解析：这里使用了Retrofit，因为有@Background来处理异步操作，因此去掉CallAdapter。通过修改Retrofit的源码，在create方法里边已经处理好了converter。  
+    使用：step1、在自定义的Application中，重写createRetrofit方法，创建Retrofit，初始化参数。
+         step2、调用http方法，传入ApiServices.class，调用方法。
 ### 六、跨作用域调用
     用于RecyclerView.holder的点击等业务处理、跨Activity通信、Fragment和Activity通信、甚至于任何地方来操作ui。
     用法：给pre()方法传入IPresenter.class。未提供默认pre(xxx.class)调用的地方，可使用SKHelper.pre(xxx.class,index)。
