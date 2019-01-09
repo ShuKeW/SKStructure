@@ -1,4 +1,4 @@
-package com.skstructure.demo
+package com.skstructure.demo.business.jokelist
 
 import android.content.Context
 import android.util.Log
@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.skstructure.SKHelper
+import com.skstructure.demo.display.IDemoActivityDisplay
+import com.skstructure.demo.JokeData
+import com.skstructure.demo.R
 import com.skstructure.recyclerview.RVAdapter
 import com.skstructure.recyclerview.RVHolder
 
@@ -17,7 +20,13 @@ import com.skstructure.recyclerview.RVHolder
 class JokeListRVAdapter(context: Context, dataList: List<JokeData.JokeBean>?) :
     RVAdapter<JokeData.JokeBean, JokeListHolder>(context, dataList) {
     override fun newViewHolder(parent: ViewGroup?, viewType: Int): JokeListHolder {
-        return JokeListHolder(mInflater.inflate(R.layout.item_joke, parent, false))
+        return JokeListHolder(
+            mInflater.inflate(
+                R.layout.item_joke,
+                parent,
+                false
+            )
+        )
     }
 }
 

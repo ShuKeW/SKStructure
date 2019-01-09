@@ -1,8 +1,13 @@
-package com.skstructure.demo
+package com.skstructure.demo.business.jokedetail
 
+import com.skstructure.SKHelper
 import com.skstructure.core.Impl
 import com.skstructure.core.SKIPre
 import com.skstructure.core.SKPre
+import com.skstructure.demo.ApiServices
+import com.skstructure.demo.BaseBean
+import com.skstructure.demo.JokeData
+import com.skstructure.demo.display.IDialogDisplay
 import com.skstructure.modules.methodproxy.Background
 import com.skstructure.modules.methodproxy.BackgroundType
 
@@ -17,7 +22,8 @@ interface IJokeDetailPre : SKIPre {
     fun loadJokeComment(jokeBean: JokeData.JokeBean?)
 }
 
-class JokeDetailPre : SKPre<IJokeDetailActivity>(), IJokeDetailPre {
+class JokeDetailPre : SKPre<IJokeDetailActivity>(),
+    IJokeDetailPre {
 
     override fun onCreate() {
 
@@ -27,7 +33,9 @@ class JokeDetailPre : SKPre<IJokeDetailActivity>(), IJokeDetailPre {
         if (jokeBean == null) {
             return
         }
+        SKHelper.display(IDialogDisplay::class.java).dialogLoading()
         val jokeComment = http(ApiServices::class.java).loadJokeComment(jokeBean.soureid, 1)
+        SKHelper.display(IDialogDisplay::class.java).dialogLoadingDismiss()
         var commentList: ArrayList<BaseBean>
         if (jokeComment != null && jokeComment.code == 200) {
             commentList = ArrayList()
@@ -36,6 +44,10 @@ class JokeDetailPre : SKPre<IJokeDetailActivity>(), IJokeDetailPre {
             commentList.addAll(jokeComment.data?.normal?.list)
             ui().showCommentList(commentList)
         }
+    }
+
+    override fun onDestory() {
+
     }
 
 }

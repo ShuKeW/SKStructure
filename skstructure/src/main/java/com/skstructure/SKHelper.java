@@ -81,4 +81,8 @@ public class SKHelper {
     public static <H> H http(Class<H> hClass) {
         return mSkModulesManager.getSkStructureManager().getHttp(hClass);
     }
+    public static <N> N nullProxy(Class<N> nClass) {
+        return mSkModulesManager.getSkStructureManager().getNullProxy(nClass);
+    }
+
 }

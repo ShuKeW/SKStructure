@@ -77,6 +77,11 @@ public class SKStructureModel {
     }
 
     public void destory() {
-
+        ui = null;
+        IPre = null;
+        skProxy.destory();
+        skProxy = null;
+        superClass.clear();
+        superClass = null;
     }
 }

@@ -1,4 +1,4 @@
-package com.skstructure.demo;
+package com.skstructure.demo.interceptor;
 
 import android.util.Log;
 import com.skstructure.interceptor.SKDisplayMethodEndInterceptor;

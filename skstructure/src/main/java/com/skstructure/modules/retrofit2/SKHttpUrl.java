@@ -17,8 +17,8 @@ public abstract class SKHttpUrl {
         pathParam = new HashMap<>();
         queryParam = new HashMap<>();
         addHeader();
-        addPathParam();
-        addQueryParam();
+        addPathParam(pathParam);
+        addQueryParam(queryParam);
     }
 
     public Map<String, Param> getPathParam() {
@@ -37,9 +37,9 @@ public abstract class SKHttpUrl {
 
     public abstract void addHeader();
 
-    public abstract void addPathParam();
+    public abstract void addPathParam(Map<String, Param> pathParam);
 
-    public abstract void addQueryParam();
+    public abstract void addQueryParam(Map<String, Param> queryParam);
 
     public static class Param<T> {
         public T value;

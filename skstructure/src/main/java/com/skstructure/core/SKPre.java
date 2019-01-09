@@ -27,11 +27,11 @@ public abstract class SKPre<U> implements SKIPre {
     }
 
     public abstract void onCreate();
+    public abstract void onDestory();
 
     public U ui() {
         if (uiProxy == null) {
-            Class uiClass = SKClassGenericTypeUtil.getClassGenericTypeNotSure(getClass(), 0);
-            return (U) SKHelper.getSkMethodProxy().createNullProxy(uiClass);
+            return (U) SKHelper.nullProxy(uiClass);
         }
         return uiProxy;
     }
@@ -45,13 +45,13 @@ public abstract class SKPre<U> implements SKIPre {
             if (skStructureModel.getSkProxy() != null && skStructureModel.getSkProxy().proxy != null) {
                 return (T) skStructureModel.getSkProxy().proxy;
             } else {
-                return SKHelper.getSkMethodProxy().createNullProxy(tClass);
+                return SKHelper.nullProxy(tClass);
             }
         } else if (skStructureModel != null && skStructureModel.getIPre().equals(tClass)) {
             if (skStructureModel.getSkProxy() != null && skStructureModel.getSkProxy().proxy != null) {
                 return (T) skStructureModel.getSkProxy().proxy;
             } else {
-                return SKHelper.getSkMethodProxy().createNullProxy(tClass);
+                return SKHelper.nullProxy(tClass);
             }
         } else {
             return SKHelper.pre(tClass, index);
@@ -62,4 +62,11 @@ public abstract class SKPre<U> implements SKIPre {
         return SKHelper.http(hClass);
     }
 
+    @Override
+    public void destory() {
+        onDestory();
+        skStructureModel = null;
+        uiClass = null;
+        uiProxy = null;
+    }
 }

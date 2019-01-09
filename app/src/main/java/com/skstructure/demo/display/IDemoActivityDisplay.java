@@ -1,7 +1,9 @@
-package com.skstructure.demo;
+package com.skstructure.demo.display;
 
 import android.os.Bundle;
 import com.skstructure.core.Impl;
+import com.skstructure.demo.JokeData;
+import com.skstructure.demo.business.jokedetail.JokeDetailActivity;
 import com.skstructure.modules.display.SKActivityDisplay;
 import com.skstructure.modules.display.SKIActivityDisplay;
 import com.skstructure.modules.methodproxy.Interceptor;

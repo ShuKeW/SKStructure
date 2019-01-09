@@ -65,7 +65,7 @@ public abstract class SKActivity<P extends SKIPre> extends AppCompatActivity {
     public P pre() {
         if (skStructureModel == null || skStructureModel.getSkProxy() == null || skStructureModel.getSkProxy().proxy == null) {
             Class iPre = SKClassGenericTypeUtil.getClassGenericTypeNotSure(getClass(), 0);
-            return (P) SKHelper.getSkMethodProxy().createNullProxy(iPre);
+            return (P) SKHelper.nullProxy(iPre);
         }
         return (P) skStructureModel.getSkProxy().proxy;
     }
@@ -85,7 +85,7 @@ public abstract class SKActivity<P extends SKIPre> extends AppCompatActivity {
     public <C extends SKIPre> C pre(Class<C> cClass, int index) {
         if (skStructureModel != null && skStructureModel.getIPre().equals(cClass)) {
             if (skStructureModel.getSkProxy() == null || skStructureModel.getSkProxy().proxy == null) {
-                return SKHelper.getSkMethodProxy().createNullProxy(cClass);
+                return SKHelper.nullProxy(cClass);
             }
             return (C) skStructureModel.getSkProxy().proxy;
         }
@@ -101,8 +101,10 @@ public abstract class SKActivity<P extends SKIPre> extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         SKHelper.getSkStructureManager().detach(skStructureModel);
+        skStructureModel.destory();
+        skStructureModel = null;
         SKHelper.getSkScreenManager().onDestroy(this);
+        super.onDestroy();
     }
 }

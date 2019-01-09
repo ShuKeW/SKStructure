@@ -12,4 +12,11 @@ public class SKProxy {
     public Object impl;//实现类
     public Object proxy;//代理类
     public ConcurrentHashMap<String, SKMethod<?>> methodCache = new ConcurrentHashMap();
+
+    public void destory() {
+        impl = null;
+        proxy = null;
+        methodCache.clear();
+        methodCache = null;
+    }
 }

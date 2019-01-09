@@ -10,4 +10,5 @@ import com.skstructure.modules.structure.SKStructureModel;
 
 public interface SKIPre {
     void create(SKStructureModel skStructureModel);
+    void destory();
 }

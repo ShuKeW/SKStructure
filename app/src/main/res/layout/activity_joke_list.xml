@@ -3,7 +3,7 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context=".JokeListActivity">
+                                             tools:context=".business.jokelist.JokeListActivity">
 
     <com.skstructure.recyclerview.SKRecyclerView
             android:id="@+id/skrv_joke_list"

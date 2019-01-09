@@ -1,9 +1,15 @@
-package com.skstructure.demo;
+package com.skstructure.demo.application;
 
 import com.skstructure.SKApplication;
+import com.skstructure.demo.interceptor.DisplayEndInterceptor;
+import com.skstructure.demo.interceptor.DisplayStartInterceptor;
+import com.skstructure.demo.interceptor.PreEndInterceptor;
+import com.skstructure.demo.interceptor.PreStartInterceptor;
 import com.skstructure.modules.methodproxy.SKMethodProxy;
 import com.skstructure.modules.retrofit2.Retrofit;
 import com.skstructure.modules.retrofit2.SKHttpUrl;
+
+import java.util.Map;
 
 /**
  * @author weishukai
@@ -48,12 +54,12 @@ public class DemoApplication extends SKApplication {
             }
 
             @Override
-            public void addPathParam() {
+            public void addPathParam(Map<String, Param> pathParam) {
 
             }
 
             @Override
-            public void addQueryParam() {
+            public void addQueryParam(Map<String, Param> queryParam) {
 
             }
         }).build();

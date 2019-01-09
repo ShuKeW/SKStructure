@@ -1,7 +1,10 @@
-package com.skstructure.demo
+package com.skstructure.demo.business.jokedetail
 
 import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
+import com.skstructure.demo.BaseBean
+import com.skstructure.demo.JokeData
+import com.skstructure.demo.R
 import com.skstructure.recyclerview.DividerLinearItemDecoration
 import com.skstructure.recyclerview.SKRecyclerView
 import com.skstructure.view.SKActivity
@@ -17,7 +20,8 @@ interface IJokeDetailActivity {
 
 }
 
-class JokeDetailActivity : SKActivity<IJokeDetailPre>(), IJokeDetailActivity {
+class JokeDetailActivity : SKActivity<IJokeDetailPre>(),
+    IJokeDetailActivity {
 
     private lateinit var skRecyclerView: SKRecyclerView
     private var adapter: JokeDetailRVAdapter? = null
@@ -32,7 +36,7 @@ class JokeDetailActivity : SKActivity<IJokeDetailPre>(), IJokeDetailActivity {
         skRecyclerView = findViewById(R.id.skrv_joke_detail)
         skRecyclerView.setHasFixedSize(true)
         skRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        skRecyclerView.addItemDecoration(DividerLinearItemDecoration(Color.parseColor("#CCCCCC"), 1))
+        skRecyclerView.addItemDecoration(DividerLinearItemDecoration(Color.parseColor("#CCCCCC"), 2))
         adapter = JokeDetailRVAdapter(applicationContext, null)
         skRecyclerView.adapter = adapter
     }

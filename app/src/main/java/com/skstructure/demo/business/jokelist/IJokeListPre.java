@@ -1,10 +1,13 @@
-package com.skstructure.demo;
+package com.skstructure.demo.business.jokelist;
 
 import android.util.Log;
 import com.skstructure.SKHelper;
 import com.skstructure.core.Impl;
 import com.skstructure.core.SKIPre;
 import com.skstructure.core.SKPre;
+import com.skstructure.demo.ApiServices;
+import com.skstructure.demo.JokeData;
+import com.skstructure.demo.display.IDialogDisplay;
 import com.skstructure.modules.methodproxy.Background;
 import com.skstructure.modules.methodproxy.BackgroundType;
 import com.skstructure.modules.methodproxy.Interceptor;
@@ -39,7 +42,9 @@ class JokeListPre extends SKPre<IJokeListActivity> implements IJokeListPre {
 
     @Override
     public void loadJokeList() {
+        SKHelper.display(IDialogDisplay.class).dialogLoading();
         JokeData jokeDataResponse = http(ApiServices.class).loadJokeList(2, 1);
+        SKHelper.display(IDialogDisplay.class).dialogLoadingDismiss();
         if (jokeDataResponse != null && jokeDataResponse.getCode() == 200) {
             ui().showJokeList(jokeDataResponse.getData());
         } else {
@@ -70,5 +75,10 @@ class JokeListPre extends SKPre<IJokeListActivity> implements IJokeListPre {
     public void down(long jokeId) {
         //网络操作
         SKHelper.getSkToast().showLongToast("down++");
+    }
+
+    @Override
+    public void onDestory() {
+
     }
 }

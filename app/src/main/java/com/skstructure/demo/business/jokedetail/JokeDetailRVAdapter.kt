@@ -1,10 +1,12 @@
-package com.skstructure.demo
+package com.skstructure.demo.business.jokedetail
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.skstructure.SKHelper
+import com.skstructure.demo.*
+import com.skstructure.demo.business.jokelist.IJokeListPre
 import com.skstructure.recyclerview.RVAdapter
 import com.skstructure.recyclerview.RVHolder
 
@@ -20,10 +22,22 @@ class JokeDetailRVAdapter(context: Context, dataList: List<BaseBean>?) :
     override fun newViewHolder(parent: ViewGroup?, viewType: Int): RVHolder<BaseBean>? {
         return when (viewType) {
             0 -> {
-                JokeHolder(mInflater.inflate(R.layout.item_joke, parent, false))
+                JokeHolder(
+                    mInflater.inflate(
+                        R.layout.item_joke,
+                        parent,
+                        false
+                    )
+                )
             }
             1 -> {
-                JokeCommentHolder(mInflater.inflate(R.layout.item_joke_comment, parent, false))
+                JokeCommentHolder(
+                    mInflater.inflate(
+                        R.layout.item_joke_comment,
+                        parent,
+                        false
+                    )
+                )
             }
             else -> {
                 null

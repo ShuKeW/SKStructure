@@ -23,12 +23,6 @@ public abstract class SKApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        L.plant(new L.Tree() {
-            @Override
-            protected void log(int priority, String tag, String message, Throwable t) {
-                Log.println(priority,tag,message);
-            }
-        });
     }
 
     @Override

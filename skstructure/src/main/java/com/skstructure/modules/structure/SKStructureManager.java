@@ -22,29 +22,25 @@ public class SKStructureManager {
     private final ConcurrentHashMap<Class<?>, SKProxy> stackDisplay;
     private final ConcurrentHashMap<Class<?>, Object> stackHttp;
     private final ConcurrentHashMap<Class<?>, Object> stackImpl;
+    private Object nProxy;
 
     public SKStructureManager() {
         stackPre = new ConcurrentHashMap<>();
         stackDisplay = new ConcurrentHashMap<>();
         stackHttp = new ConcurrentHashMap<>();
         stackImpl = new ConcurrentHashMap<>();
-
     }
 
     public void attach(SKStructureModel skStructureModel) {
-        synchronized (stackPre) {
             SimpleArrayMap<Integer, SKStructureModel> stack = stackPre.get(skStructureModel.getIPre());
             if (stack == null) {
                 stack = new SimpleArrayMap<>();
             }
             stack.put(skStructureModel.key, skStructureModel);
             stackPre.put(skStructureModel.getIPre(), stack);
-        }
-
     }
 
     public void detach(SKStructureModel skStructureModel) {
-        synchronized (stackPre) {
             SimpleArrayMap<Integer, SKStructureModel> stack = stackPre.get(skStructureModel.getIPre());
             if (stack != null) {
                 SKStructureModel skStructureModelStack = stack.get(skStructureModel.key);
@@ -56,7 +52,6 @@ public class SKStructureManager {
                     }
                 }
             }
-        }
     }
 
     public <T extends SKIPre> T getPre(Class<T> tClass, int index) {
@@ -67,7 +62,7 @@ public class SKStructureManager {
                 return (T) skStructureModel.getSkProxy().proxy;
             }
         }
-        return SKHelper.getSkMethodProxy().createNullProxy(tClass);
+        return getNullProxy(tClass);
     }
 
     public <D extends SKIDisplsy> D getDisplay(Class<D> dClass) {
@@ -87,5 +82,14 @@ public class SKStructureManager {
             stackHttp.put(hClass, proxy);
         }
         return (H) proxy;
+    }
+
+    public <N> N getNullProxy(Class<N> nClass) {
+        synchronized (nProxy){
+            if(nProxy == null){
+                nProxy = SKHelper.getSkMethodProxy().createNullProxy(nClass);
+            }
+        }
+        return (N) nProxy;
     }
 }
